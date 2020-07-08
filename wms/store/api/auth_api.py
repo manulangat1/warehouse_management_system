@@ -15,8 +15,9 @@ class UserApi(generics.RetrieveAPIView):
     permissions_classes = [
         permissions.IsAuthenticated
     ]
-    queryset = User.objects.all()
     serializer_class = UserSerializer
+    def get_object(self):
+        return self.request.user
 
 
 
@@ -33,7 +34,11 @@ class RegisterApi(generics.GenericAPIView):
             "token":AuthToken.objects.create(user)[1]
         })
 
-class LoginApi(generics.GenericAPIView):
+
+
+class LoginAPI(generics.GenericAPIView):
+    serializer_class = LoginSerializer
+
     def post(self,request,*args,**kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)

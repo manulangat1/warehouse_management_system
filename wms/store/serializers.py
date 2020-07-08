@@ -2,6 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 
+from .models import Product,Customer,Shipment,Warehouse
 
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
@@ -36,3 +37,29 @@ class UserSerializer(serializers.ModelSerializer):
             'username',
             'email'
         )
+
+
+class WarehouseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Warehouse
+        fields = (
+            'id',
+            'name',
+            'location'
+        )
+
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = (
+            'id',
+            'name',
+            'price',
+            'quantity',
+            'sku',
+            'date',
+            'user',
+            'warehouse'
+
+        )
+    

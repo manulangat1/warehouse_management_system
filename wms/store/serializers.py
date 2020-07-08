@@ -62,4 +62,65 @@ class ProductSerializer(serializers.ModelSerializer):
             'warehouse'
 
         )
-    
+class ProductsSerializer(serializers.ModelSerializer):
+    warehouse = serializers.SerializerMethodField()
+    total_price = serializers.SerializerMethodField()
+    class Meta:
+        model = Product
+        fields = (
+            'id',
+            'name',
+            'price',
+            'quantity',
+            'sku',
+            'date',
+            'user',
+            'warehouse',
+            'total_price'
+        )
+    def get_warehouse(self,obj):
+        return WarehouseSerializer(obj.warehouse).data
+    def get_total_price(self,obj):
+        return obj.total_price()
+class CustomerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Customer
+        fields = (
+            'id',
+            'firstname',
+            'lastname',
+            'email'
+        )
+
+class ShipmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Shipment
+        fields = (
+            'id',
+            'customer',
+            'destination',
+            'product',
+            'quantity'
+        )
+
+class ShipmentsSerializer(serializers.ModelSerializer):
+    product = serializers.SerializerMethodField()
+    total = serializers.SerializerMethodField()
+    class Meta:
+        model = Shipment
+        fields = (
+            'id',
+            'customer',
+            'destination',
+            'product',
+            'quantity',
+            'total'
+        )
+    def get_product(self,obj):
+        return ProductsSerializer(obj.product.all(),many=True).data
+    def get_total(self,obj):
+        total = 0
+        for i in obj.product.all():
+            print(i.total_price())
+            total += i.total_price()
+        return total

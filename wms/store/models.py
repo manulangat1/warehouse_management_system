@@ -19,6 +19,8 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+    def total_price(self):
+        return self.quantity * self.price
 
 class Customer(models.Model):
     firstname = models.CharField( max_length=50)

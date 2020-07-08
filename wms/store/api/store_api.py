@@ -25,3 +25,39 @@ class ProductAPI(generics.ListCreateAPIView):
             product.save()
             return Response(ProductSerializer(product).data)
         return Response({"The Warehouse does not exist in our systems, Kindly find an operational one near you"})
+
+
+class ProductsAPI(generics.ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductsSerializer
+class CustomerAPI(generics.ListCreateAPIView):
+    queryset = Customer.objects.all()
+    serializer_class = CustomerSerializer
+
+class ShipmentAPI(generics.ListAPIView):
+    queryset = Shipment.objects.all()
+    serializer_class = ShipmentSerializer
+
+
+
+class ShipmentCreateAPI(generics.CreateAPIView):
+    queryset = Shipment.objects.all()
+    serializer_class = ShipmentSerializer
+
+    def create(self,request):
+        c = Customer.objects.filter(pk=request.data['customer']).first()
+        print(c)
+        produc = request.data['product']
+        if c:
+            shipment = Shipment(
+                destination=request.data['destination'],
+                quantity=request.data['quantity'],
+            )
+            shipment.user = request.user
+            shipment.customer = c
+            shipment.save()
+            shipment.product.add(produc)
+            shipment.save()
+            print(shipment)
+            return Response(ShipmentsSerializer(shipment).data)
+        return Response({"hey"})

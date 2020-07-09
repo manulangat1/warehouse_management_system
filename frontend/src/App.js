@@ -6,6 +6,8 @@ import store from './store'
 import { Provider} from 'react-redux'
 import { connect } from 'react-redux'
 import { loadUser } from './actions/auth'
+import Login from './components/auth/Login'
+
 class App extends React.Component{
   componentDidMount(){
     store.dispatch(loadUser())
@@ -14,7 +16,7 @@ class App extends React.Component{
     return(
       <Provider store={store}>
       <main>
-        <h1>Hey there</h1>
+        <Login />
       </main>
       </Provider>
     )

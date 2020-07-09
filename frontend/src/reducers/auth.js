@@ -1,4 +1,4 @@
-import { USER_LOADING } from "../actions/types"
+import { USER_LOADING ,LOGIN_SUCCESS,USER_LOADED, LOGOUT_SUCCESS} from "../actions/types"
 
 
 const initialState = {
@@ -29,6 +29,14 @@ export default function(state=initialState,action){
                 isLoading:false,
                 isAuthenticated:true,
                 user:action.payload
+            }
+        case LOGOUT_SUCCESS:
+            localStorage.removeItem('token')
+            return {
+                token:null,
+                isAuthenticated:false,
+                isLoading:false,
+                user:null
             }
         default:
             return state

@@ -4,8 +4,12 @@ import './App.css';
 import store from './store'
 
 import { Provider} from 'react-redux'
-
+import { connect } from 'react-redux'
+import { loadUser } from './actions/auth'
 class App extends React.Component{
+  componentDidMount(){
+    store.dispatch(loadUser())
+  }
   render(){
     return(
       <Provider store={store}>

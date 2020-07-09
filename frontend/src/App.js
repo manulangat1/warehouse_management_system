@@ -7,7 +7,7 @@ import { Provider} from 'react-redux'
 import { connect } from 'react-redux'
 import { loadUser } from './actions/auth'
 import Login from './components/auth/Login'
-
+import Register from './components/auth/Register'
 class App extends React.Component{
   componentDidMount(){
     store.dispatch(loadUser())
@@ -17,6 +17,7 @@ class App extends React.Component{
       <Provider store={store}>
       <main>
         <Login />
+        <Register />
       </main>
       </Provider>
     )

@@ -11,7 +11,7 @@ class Customers extends React.Component{
             <h1>Customers</h1>
             {
                 this.props.customers.map(customer => (
-                    <div>
+                    <div key={customer.id}>
                         <h1>{customer.firstname}</h1>
                         <p>{customer.lastname}</p>
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-
+import {Route,Redirect} from 'react-router-dom'
 import {loginUser} from '../../actions/auth'
 
 
@@ -17,6 +17,9 @@ class Login extends  React.Component {
         this.props.loginUser(username,password)
     }
     render(){
+        if (this.props.isAuthenticated){
+            return <Redirect to="/" />
+        }
         const {username,password} = this.state
         return (
         <section>

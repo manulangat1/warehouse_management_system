@@ -10,6 +10,8 @@ import { connect } from 'react-redux'
 import { loadUser } from './actions/auth'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
+import PrivateRoute from './components/common/PrivateRoute'
+import Customers from './components/stores/Customers'
 class App extends React.Component{
   componentDidMount(){
     store.dispatch(loadUser())
@@ -20,7 +22,8 @@ class App extends React.Component{
         <Router>
         <Switch>
       <main>
-        < Route exact path="/" component={Login} />
+        <PrivateRoute exact path="/" component={Customers} />
+        < Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
       </main>
       </Switch>

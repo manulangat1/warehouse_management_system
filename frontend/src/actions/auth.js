@@ -12,7 +12,7 @@ export const  loginUser = (username,password) => (dispatch,getState)   => {
         }
     }
     const body = JSON.stringify({username,password})
-    axios.post('auth/login',body,config)
+    axios.post('auth/login/',body,config)
             .then( res => {
                 dispatch({
                     type:LOGIN_SUCCESS,
@@ -55,7 +55,7 @@ export const registerUser = (username,password,email) => (dispatch,getState) => 
         }
     }
     const body = JSON.stringify({username,password,email})
-    axios.post(`/auth/register`,body,config)
+    axios.post(`/auth/register/`,body,config)
         .then(
             res =>{
                 dispatch({
@@ -67,7 +67,7 @@ export const registerUser = (username,password,email) => (dispatch,getState) => 
         .catch(err => console.log(err))
 }
 export const logout = () => (dispatch,getState) => {
-    axios.post(`auth/logout`,null,tokenConfig(getState))
+    axios.post(`auth/logout/`,null,tokenConfig(getState))
         .then(res => {
             dispatch({
                 type:LOGOUT_SUCCESS

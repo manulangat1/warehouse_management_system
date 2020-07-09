@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { registerUser } from '../../actions/auth'
+import {Route,Redirect} from 'react-router-dom'
 
 class Register extends React.Component{
     state = {
@@ -19,6 +20,9 @@ class Register extends React.Component{
         }
     }
     render(){
+        if(this.props.isAuthenticated){
+            return <Redirect to="/"/>
+        }
         const { username,email,password,password2} = this.state
         return (
         <section>

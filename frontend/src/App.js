@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import store from './store'
 
+import {HashRouter as Router,Route,Switch,Redirect} from 'react-router-dom'
+
 import { Provider} from 'react-redux'
 import { connect } from 'react-redux'
 import { loadUser } from './actions/auth'
@@ -15,10 +17,14 @@ class App extends React.Component{
   render(){
     return(
       <Provider store={store}>
+        <Router>
+        <Switch>
       <main>
-        <Login />
-        <Register />
+        < Route exact path="/" component={Login} />
+        <Route exact path="/register" component={Register} />
       </main>
+      </Switch>
+      </Router>
       </Provider>
     )
   }

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { loadCustomers} from '../../actions/customer'
 class Customers extends React.Component{
-    componentWillMount(){
+    componentDidMount(){
         this.props.loadCustomers()
     }
     render(){

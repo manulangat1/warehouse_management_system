@@ -13,6 +13,7 @@ import Register from './components/auth/Register'
 import PrivateRoute from './components/common/PrivateRoute'
 import Customers from './components/stores/Customers'
 import Shipment from './components/stores/Shipment'
+import Products from './components/stores/Products'
 class App extends React.Component{
   componentDidMount(){
     store.dispatch(loadUser())
@@ -25,6 +26,7 @@ class App extends React.Component{
       <main>
         <PrivateRoute exact path="/" component={Customers} />
         <PrivateRoute exact path="/shipments" component={Shipment} />
+        <PrivateRoute exact path="/products" component={Products} />
         < Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
       </main>

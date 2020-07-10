@@ -36,7 +36,7 @@ class CustomerAPI(generics.ListCreateAPIView):
 
 class ShipmentAPI(generics.ListAPIView):
     queryset = Shipment.objects.all()
-    serializer_class = ShipmentSerializer
+    serializer_class = ShipmentsSerializer
 
 
 

@@ -14,7 +14,6 @@ class Customers extends React.Component{
                     <div key={customer.id}>
                         <h1>{customer.firstname}</h1>
                         <p>{customer.lastname}</p>
-
                     </div>
                 ))
             }

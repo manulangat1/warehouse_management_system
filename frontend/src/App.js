@@ -12,6 +12,7 @@ import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 import PrivateRoute from './components/common/PrivateRoute'
 import Customers from './components/stores/Customers'
+import Shipment from './components/stores/Shipment'
 class App extends React.Component{
   componentDidMount(){
     store.dispatch(loadUser())
@@ -23,6 +24,7 @@ class App extends React.Component{
         <Switch>
       <main>
         <PrivateRoute exact path="/" component={Customers} />
+        <PrivateRoute exact path="/shipments" component={Shipment} />
         < Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
       </main>

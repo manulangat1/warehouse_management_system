@@ -15,7 +15,7 @@ export default function(state=initialState,action){
         case PRODUCT_ADD_SUCCESS:
             return {
                 ...state,
-                product:[action.payload]
+                product:action.payload
             }
         default:
             return state

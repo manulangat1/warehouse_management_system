@@ -31,7 +31,6 @@ class App extends React.Component{
         <PrivateRoute exact path="/products/add" component={ProductAdd} />
         < Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
-
       </main>
       </Switch>
       </Router>

@@ -1,7 +1,8 @@
-import { PRODUCT_SUCCESS } from '../actions/types'
+import { PRODUCT_SUCCESS,PRODUCT_ADD_SUCCESS } from '../actions/types'
 
 const initialState = {
-    products:[]
+    products:[],
+    product:[]
 }
 
 export default function(state=initialState,action){
@@ -10,6 +11,11 @@ export default function(state=initialState,action){
             return {
                 ...state,
                 products:action.payload
+            }
+        case PRODUCT_ADD_SUCCESS:
+            return {
+                ...state,
+                product:[action.payload]
             }
         default:
             return state

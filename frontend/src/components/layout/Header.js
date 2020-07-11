@@ -10,15 +10,15 @@ class Header extends React.Component {
     render(){
         const authLinks = (
             <ul>
-            <li> <Link to="/">Home</Link> </li>
-            {/* <li> <Link to="/register">Register</Link> </li> */}
+            <li> <NavLink to="/">Home</NavLink> </li>
+            {/* <li> <NavLink to="/register">Register</NavLink> </li> */}
             <button onClick={this.props.logout} className="primary-btn" >Logout</button>
             </ul>
         )
         const guestLinks = (
             <ul>
-            <li> <Link to="/login">Login</Link> </li>
-            <li> <Link to="/register">Register</Link> </li>
+            <li> <NavLink to="/login">Login</NavLink> </li>
+            <li> <NavLink to="/register">Register</NavLink> </li>
             </ul>
         )
         return(

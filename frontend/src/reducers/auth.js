@@ -1,42 +1,47 @@
-import { USER_LOADING ,LOGIN_SUCCESS,USER_LOADED, LOGOUT_SUCCESS} from "../actions/types"
+import {AUTH_ERROR, USER_LOADING ,LOGIN_SUCCESS,USER_LOADED, LOGOUT_SUCCESS} from "../actions/types"
 
 
 const initialState = {
     token:localStorage.getItem('token'),
     isAuthenticated:null,
-    isLoading:false,
+    isLoading: false,
     user:null
 }
 
 export default function(state=initialState,action){
     switch(action.type){
-        case USER_LOADING:
-            return {
-                ...state,
-                isLoading:true
-            }
         case LOGIN_SUCCESS:
+        // case REGISTER_SUCCESS:
+        // case REGISTER_RIDER:
             localStorage.setItem('token',action.payload.token)
-            return {
+            return{
                 ...state,
                 ...action.payload,
                 isAuthenticated:true,
                 isLoading:false
             }
-        case USER_LOADED:
-            return {
+        case USER_LOADING:
+            return{
                 ...state,
-                isLoading:false,
+                isLoading:true
+            }
+        case USER_LOADED:
+            return{
+                ...state,
                 isAuthenticated:true,
+                isLoading:false,
                 user:action.payload
             }
+        case AUTH_ERROR:
+        // case LOGIN_FAIL:
         case LOGOUT_SUCCESS:
             localStorage.removeItem('token')
             return {
-                token:null,
-                isAuthenticated:false,
-                isLoading:false,
-                user:null
+                ...state,
+                isAuthenticated:null,
+                isLoading: false,
+                user:null,
+                token:null
             }
         default:
             return state

@@ -28,13 +28,22 @@ class ProductAPI(generics.ListCreateAPIView):
 
 
 class ProductsAPI(generics.ListAPIView):
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
     queryset = Product.objects.all()
     serializer_class = ProductsSerializer
 class CustomerAPI(generics.ListCreateAPIView):
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
 
 class ShipmentAPI(generics.ListAPIView):
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
     queryset = Shipment.objects.all()
     serializer_class = ShipmentsSerializer
 

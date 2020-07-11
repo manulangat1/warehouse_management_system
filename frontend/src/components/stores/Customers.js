@@ -7,8 +7,10 @@ class Customers extends React.Component{
     }
     render(){
         return(
-            <section>
+            <section id="customer">
             <h1>Customers</h1>
+            <div className="container">
+                <div className="grid">     
             {
                 this.props.customers.map(customer => (
                     <div key={customer.id}>
@@ -17,6 +19,8 @@ class Customers extends React.Component{
                     </div>
                 ))
             }
+            </div>
+            </div>
             </section>
         )
     }

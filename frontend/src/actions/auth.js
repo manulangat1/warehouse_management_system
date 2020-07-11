@@ -21,45 +21,45 @@ export const  loginUser = (username,password) => (dispatch,getState)   => {
             })
             .catch(err => console.log(err))
 }
-// export const loadUser = () => (dispatch,getState) => {
-//     dispatch({type:USER_LOADING})    
-//     axios.get('/auth/user/',tokenConfig(getState))
-//          .then(res => {
-//              dispatch({
-//                  type:USER_LOADED,
-//                  payload:res.data
-//              })
-//          })
-//          .catch(err => console.log(err))
-// }
-
-export const loadUser =() => (dispatch,getState) => {
-    dispatch({type:USER_LOADING})
-    // console.log(tokenConfig(getState))
-    const token = getState().auth.token
-    //headers 
-    const config= {
-        headers:{
-            'Content-Type':'application/json'
-        }
-    }
-    if (token){
-        config.headers['Authorization'] = `Token ${token}`
-    }
-    console.log(config)
-    axios.get('/auth/user/',config)
-        .then(res => {
-            dispatch({
-                type:USER_LOADED,
-                payload:res.data
-            })
-        })
-        .catch(err =>{
-            dispatch({
-                type:AUTH_ERROR
-            })
-        })
+export const loadUser = () => (dispatch,getState) => {
+    dispatch({type:USER_LOADING})    
+    axios.get('/auth/user/',tokenConfig(getState))
+         .then(res => {
+             dispatch({
+                 type:USER_LOADED,
+                 payload:res.data
+             })
+         })
+         .catch(err => console.log(err))
 }
+
+// export const loadUser =() => (dispatch,getState) => {
+//     dispatch({type:USER_LOADING})
+//     // console.log(tokenConfig(getState))
+//     const token = getState().auth.token
+//     //headers 
+//     const config= {
+//         headers:{
+//             'Content-Type':'application/json'
+//         }
+//     }
+//     if (token){
+//         config.headers['Authorization'] = `Token ${token}`
+//     }
+//     console.log(config)
+//     axios.get('/auth/user/',config)
+//         .then(res => {
+//             dispatch({
+//                 type:USER_LOADED,
+//                 payload:res.data
+//             })
+//         })
+//         .catch(err =>{
+//             dispatch({
+//                 type:AUTH_ERROR
+//             })
+//         })
+// }
 
 export const registerUser = (username,password,email) => (dispatch,getState) => {
     const config = {

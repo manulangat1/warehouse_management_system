@@ -22,7 +22,8 @@ class Login extends  React.Component {
         }
         const {username,password} = this.state
         return (
-        <section>
+        <section id="login">
+            <div className="container">
             <h1>Login</h1>
             <form onSubmit={this.onSubmit}>
                 <div>
@@ -35,6 +36,7 @@ class Login extends  React.Component {
                 </div>
                 <button className="primary-btn">Login</button>
             </form>
+            </div>
         </section>
         )
     }

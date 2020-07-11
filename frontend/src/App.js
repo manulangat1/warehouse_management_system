@@ -15,6 +15,10 @@ import Customers from './components/stores/Customers'
 import Shipment from './components/stores/Shipment'
 import Products from './components/stores/Products'
 import ProductAdd from './components/stores/ProductAdd'
+
+import Header from './components/layout/Header'
+import Footer from './components/layout/Footer'
+import './styles/main.scss'
 class App extends React.Component{
   componentDidMount(){
     store.dispatch(loadUser())
@@ -23,6 +27,7 @@ class App extends React.Component{
     return(
       <Provider store={store}>
         <Router>
+          <Header />
         <Switch>
       <main>
         <PrivateRoute exact path="/" component={Customers} />
@@ -33,6 +38,7 @@ class App extends React.Component{
         <Route exact path="/register" component={Register} />
       </main>
       </Switch>
+      <Footer />
       </Router>
       </Provider>
     )

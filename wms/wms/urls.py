@@ -5,5 +5,5 @@ from knox import views as knox_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/',include('store.urls.auth_urls')),
-    path('api/auth',include('knox.urls')),
+    path('api/',include('store.urls.store_urls')),
 ]

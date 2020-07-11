@@ -12,11 +12,12 @@ from rest_framework.views import APIView
 #knox imports
 from knox.models import AuthToken
 class UserApi(generics.RetrieveAPIView):
-    permissions_classes = [
+    permission_classes = [
         permissions.IsAuthenticated
     ]
     serializer_class = UserSerializer
     def get_object(self):
+        # print(self.request.headers)
         return self.request.user
 
 
@@ -44,6 +45,6 @@ class LoginAPI(generics.GenericAPIView):
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data
         return Response({
-            "user":UserSerializer(user,context=self.get_serializer_context()).data,
+            "user":UserSerializer(user).data,
             "token":AuthToken.objects.create(user)[1]
         })
